@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
     vibe::VIBE vibe_;
     cv::Mat frame;
     cap>>frame;
-    cv::cvtColor(frame, frame, CV_BGR2GRAY);
+//    cv::cvtColor(frame, frame, CV_BGR2GRAY);
     vibe_.init(frame);
 
     cap >> frame;
@@ -23,8 +23,8 @@ int main(int argc, char** argv) {
     while ( !frame.empty() )
     {
         cap >> frame;
-        cv::Mat gray;
-        cv::cvtColor(frame, gray, CV_BGR2GRAY);
+        cv::Mat gray = frame.clone();
+//        cv::cvtColor(frame, gray, CV_BGR2GRAY);
         vibe_.update(gray);
         cv::Mat foreground;
         frame.copyTo(foreground, vibe_.getMask());

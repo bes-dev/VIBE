@@ -4,7 +4,7 @@
 #include <opencv2/core/core.hpp>
 #include <memory>
 
-#define RANDOM_BUFFER_SIZE 65535
+#define RANDOM_BUFFER_SIZE (65535)
 
 namespace vibe
 {
@@ -29,7 +29,6 @@ private:
 
     int samples_;
     int chanels_;
-    int pixels_;
 
     unsigned char *model_;
 
