@@ -13,16 +13,18 @@ int main(int argc, char** argv) {
     cv::VideoCapture cap(filename);
 
     int channels = 3;
-    vibe::VIBE vibe_(channels);
+    vibe::VIBE vibe_(channels, 20, 1, 40, 2, 16);
     cv::Mat frame;
     cap>>frame;
     if(channels == 1)
     {
         cv::cvtColor(frame, frame, CV_BGR2GRAY);
     }
+    else
+    {
+        cv::cvtColor(frame, frame, CV_BGR2HSV);
+    }
     vibe_.init(frame);
-
-    cap >> frame;
 
     while ( !frame.empty() )
     {
@@ -32,10 +34,14 @@ int main(int argc, char** argv) {
         {
             cv::cvtColor(frame, gray, CV_BGR2GRAY);
         }
+        else
+        {
+            cv::cvtColor(frame, gray, CV_BGR2HSV);
+        }
         vibe_.update(gray);
         cv::Mat foreground;
         frame.copyTo(foreground, vibe_.getMask());
-        cv::imshow("mask", vibe_.getMask());
+        cv::imshow("frame", frame);
         cv::imshow("foreground", foreground);
         char key = cv::waitKey(10);
         if (key == 27)

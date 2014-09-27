@@ -87,12 +87,18 @@ void VIBE::update(const cv::Mat& img)
             for (int s = 0; s < samples_; s ++)
             {
                 int model_idx = channels_ * samples_ * size_.width * i + channels_ * samples_ * j + channels_ * s;
+                int channels_counter = 0;
                 for (int c = 0; c < channels_; c ++)
                 {
                     if (std::abs(img_ptr[img_idx + c] - model_[model_idx + c]) < distance_threshold_)
                     {
-                        matching_counter++;
+                        channels_counter++;
+//                        matching_counter++;
                     }
+                }
+                if (channels_counter == channels_)
+                {
+                    matching_counter++;
                 }
                 if ( matching_counter > matching_threshold_)
                 {
