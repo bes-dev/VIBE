@@ -27,7 +27,7 @@ endif()
 
 add_definitions(-DDEBUG_MODE) #This shows all messages from LOG()
 add_definitions(-Wall) #Enable all warnings always
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x -mtune=corei7 -march=corei7 -lpthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=gnu++0x -mtune=corei7 -march=corei7 -lpthread")
 
 #############################################
 add_subdirectory(3rdparty)

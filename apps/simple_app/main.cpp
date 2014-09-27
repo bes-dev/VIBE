@@ -4,8 +4,13 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
-int main() {
-    cv::VideoCapture cap("/home/sergei/Downloads/pedestrians.mp4");
+int main(int argc, char** argv) {
+    if(argc < 2)
+    {
+        return 1;
+    }
+    std::string filename = std::string(argv[1]);
+    cv::VideoCapture cap(filename);
 
     vibe::VIBE vibe_;
     cv::Mat frame;
