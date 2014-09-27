@@ -12,10 +12,14 @@ int main(int argc, char** argv) {
     std::string filename = std::string(argv[1]);
     cv::VideoCapture cap(filename);
 
-    vibe::VIBE vibe_;
+    int channels = 3;
+    vibe::VIBE vibe_(channels);
     cv::Mat frame;
     cap>>frame;
-//    cv::cvtColor(frame, frame, CV_BGR2GRAY);
+    if(channels == 1)
+    {
+        cv::cvtColor(frame, frame, CV_BGR2GRAY);
+    }
     vibe_.init(frame);
 
     cap >> frame;
@@ -24,7 +28,10 @@ int main(int argc, char** argv) {
     {
         cap >> frame;
         cv::Mat gray = frame.clone();
-//        cv::cvtColor(frame, gray, CV_BGR2GRAY);
+        if(channels == 1)
+        {
+            cv::cvtColor(frame, gray, CV_BGR2GRAY);
+        }
         vibe_.update(gray);
         cv::Mat foreground;
         frame.copyTo(foreground, vibe_.getMask());

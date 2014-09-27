@@ -13,23 +13,21 @@ class VIBE
 {
 public:
 
-    VIBE();
+    VIBE(int channels = 1, int samples = 20, int pixel_neighbor = 1, int distance_threshold = 20, int matching_threshold = 2, int update_factor = 16);
     ~VIBE();
     void init(const cv::Mat& img);
     void update(const cv::Mat& img);
     cv::Mat& getMask();
 
 private:
-    cv::Size size_;
-
+    int samples_;
+    int channels_;
     int pixel_neighbor_;
     int distance_threshold_;
     int matching_threshold_;
     int update_factor_;
 
-    int samples_;
-    int chanels_;
-
+    cv::Size size_;
     unsigned char *model_;
 
     cv::Mat mask_;
