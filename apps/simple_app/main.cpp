@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     cv::VideoCapture cap(filename);
 
     int channels = 3;
-    vibe::VIBE vibe_(channels, 20, 1, 17, 2, 16);
+    vibe::VIBE vibe_(channels, 20, 4, 17, 2, 16);
     cv::Mat frame;
     cap>>frame;
     if(channels == 1)

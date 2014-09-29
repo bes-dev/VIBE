@@ -32,7 +32,8 @@ VIBE::~VIBE()
 
 cv::Vec2i VIBE::getRndNeighbor(int i, int j)
 {
-    int rnd = rng_[rng_idx_ = ( rng_idx_ + 1 ) % RANDOM_BUFFER_SIZE] % 8;
+    int neighbor_count = (pixel_neighbor_ * 2 + 1) * (pixel_neighbor_ * 2 + 1);
+    int rnd = rng_[rng_idx_ = ( rng_idx_ + 1 ) % RANDOM_BUFFER_SIZE] % neighbor_count;
     int start_i = i - pixel_neighbor_;
     int start_j = j - pixel_neighbor_;
     int area = pixel_neighbor_ * 2 + 1;
