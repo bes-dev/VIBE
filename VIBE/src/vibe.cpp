@@ -111,7 +111,7 @@ void VIBE::update(const cv::Mat& img)
             if (flag)
             {
                 mask_.data[size_.width * i + j] = 0;
-                if(rng_[ rng_idx_ = ( rng_idx_ + 1 ) % RANDOM_BUFFER_SIZE] % update_factor_)
+                if(0 == rng_[ rng_idx_ = ( rng_idx_ + 1 ) % RANDOM_BUFFER_SIZE] % update_factor_)
                 {
                     int sample = rng_[ rng_idx_ = ( rng_idx_ + 1 ) % RANDOM_BUFFER_SIZE] % samples_;
                     int model_idx = channels_ * samples_ * size_.width * i + channels_ * samples_ * j + channels_ * sample;
